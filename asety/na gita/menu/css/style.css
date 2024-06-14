@@ -1,0 +1,212 @@
+:root {
+    --text-color1: gold;
+    --text-color1hover: white;
+    --backgroundColor1: rgb(4, 23, 54);
+    --hamburgerBackground: white;
+    --menuLineColor: gold;
+    --max-width1: 1400px;
+}
+
+html {
+    font-size: 10px;
+    scroll-behavior: smooth;
+}
+
+header {
+    width: 100%;
+    background-color: var(--backgroundColor1);
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-weight: bold;
+    z-index: 998;
+}
+
+header>nav {
+    max-width: var(--max-width1);
+    background-color: var(--backgroundColor1);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: clamp(2.2rem, 3vw, 4rem) clamp(1.6rem, 2.3vw, 3rem);
+    position: relative;
+    transition: padding 500ms;
+}
+header.scroll>nav {
+    padding: clamp(0.7rem, 1vw, 1.3rem) clamp(0.5rem, 0.7vw, 1rem);
+}
+
+header>nav>h1>a {
+    color: var(--text-color1);
+    font-size: clamp(1.6rem, 2.3vw, 3rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: transform 500ms, font-size 500ms;
+}
+header.scroll>nav>h1>a {
+    font-size: clamp(1.4rem, 1.9vw, 2.5rem);
+}
+
+header nav h1 :is(a:hover, a:focus) {
+    transform: scale(1.2);
+    color: var(--text-color1hover);
+    outline: transparent;
+}
+
+.ham {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--hamburgerBackground);
+    border-radius: 5px;
+    position: absolute;
+    top: 25%;
+    left: 90%;
+    cursor: pointer;
+    transition: top 500ms;
+}
+
+header.scroll .ham {
+    top: 10%;
+
+}
+
+.ham::before,
+.ham::after {
+    content: "";
+    width: 10px;
+    height: 2px;
+    background-color: var(--hamburgerBackground);
+    position: absolute;
+}
+.ham::before {
+    top: 20%;
+    left: 20%;
+}
+.ham::after{
+    top: 60%;
+    left: 20%;
+}
+
+header>nav>ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: clamp(4.4rem, 6vw, 8rem);
+    left: 0;
+    right: 0;
+    transform-origin: top center;
+    background-color: var(--backgroundColor1);
+    transition: top 500ms;
+    animation: showMenu 500ms ease forwards;
+}
+
+header.scroll>nav>ul {
+    top: 2.5rem;
+}
+
+header nav ul li {
+    width: 100%;
+    text-align: center;
+    border-bottom: 2px var(--menuLineColor) solid;
+}
+
+header nav ul li a {
+    color: var(--text-color1);
+    text-transform: capitalize;
+    font-size: clamp(1.4rem, 1.9vw, 2.5rem);
+    margin: 1em 0;
+    padding: 0.5em 0;
+    text-align: center;
+    transition: transform 500ms, color 500ms, font-size 500ms;
+}
+
+header.scroll nav ul li a {
+    font-size: clamp(1.2rem, 1.6vw, 2rem);
+}
+
+header nav ul li :is(a:hover, a:focus) {
+    transform: scale(1.2);
+    color: var(--text-color1hover);
+    outline: transparent;
+}
+
+header nav ul li a::before {
+    content: '';
+    border-bottom: 3px solid var(--text-color1hover);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform ease 400ms;
+}
+
+header nav ul li a:hover::before,
+header nav ul li a:focus::before {
+    content: '';
+    transform: scaleX(1);
+}
+
+.hiden {
+    display: none;
+}
+
+
+@media screen and (min-width: 800px) {
+
+    .ham {
+        display: none;
+    }
+
+    header nav ul li {
+        border-bottom: none;
+    }
+
+    header nav ul li a {
+        margin: 1em 0.7em 1em 0;
+    }
+
+    header ul.hiden {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+
+    header.scroll>nav>ul {
+        top: 0;
+    }
+}
+
+@keyframes showMenu {
+    0% {
+        transform: scaleY(0);
+        z-index: 3;
+    }
+
+    80% {
+        transform: scaleY(1.2);
+    }
+
+    100% {
+        transform: scaleY(1);
+
+    }
+}
+/*delete this block of code / usuń ten blok kodu*/
+.aa{
+    height: 1000px;
+    background: red;
+}
+/*delete this block of code / usuń ten blok kodu*/

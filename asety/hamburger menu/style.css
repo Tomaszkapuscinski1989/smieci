@@ -1,0 +1,215 @@
+:root {
+    --headerBackgraundColor: blue;
+    --hamburgerBackground: white;
+    --menuLineColor: gold;
+    --headerColor1: black;
+    --headerColor1Hover: white;
+    --skipColor1: black;
+}
+
+html {
+    font-size: 10px;
+}
+
+header {
+    width: 100%;
+    background-color: var(--headerBackgraundColor);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-weight: bold;
+    z-index: 998;
+}
+
+header>nav {
+    max-width: 1200px;
+    background-color: var(--headerBackgraundColor);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: clamp(2.2rem, 3vw, 4rem) clamp(1.6rem, 2.3vw, 3rem);
+    position: relative;
+}
+
+header>nav>a {
+    color: var(--headerColor1);
+    text-transform: uppercase;
+    font-size: clamp(1.6rem, 2.3vw, 3rem);
+    font-weight: bold;
+    transition: transform 500ms, color 500ms;
+}
+
+header>nav>a:hover,
+header>nav>a:focus {
+    transform: scale(1.2);
+    color: var(--headerColor1Hover);
+    outline: transparent;
+}
+
+.ham {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--hamburgerBackground);
+    border-radius: 5px;
+    position: absolute;
+    top: 25%;
+    left: 90%;
+    cursor: pointer;
+}
+
+.ham::before {
+    content: "";
+    width: 15px;
+    height: 3px;
+    background-color: var(--hamburgerBackground);
+    position: absolute;
+    top: 8px;
+    left: 6px;
+}
+
+.ham::after {
+    content: "";
+    width: 15px;
+    height: 3px;
+    background-color: var(--hamburgerBackground);
+    position: absolute;
+    bottom: 8px;
+    left: 6px;
+}
+
+header>nav>ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: clamp(4.4rem, 6vw, 8rem);
+    left: 0;
+    right: 0;
+    background-color: var(--headerBackgraundColor);
+    transform-origin: top center;
+    animation: showMenu 500ms ease forwards;
+}
+
+header nav ul li {
+    width: 100%;
+    text-align: center;
+    border-bottom: 2px var(--menuLineColor) solid;
+
+}
+
+header nav ul li a {
+    color: var(--headerColor1);
+    text-transform: capitalize;
+    font-size: clamp(1.4rem, 1.9vw, 2.5rem);
+    margin: 1em 0;
+    padding: 0.5em 0;
+    text-align: center;
+    transition: transform 500ms, color 500ms;
+}
+
+
+header nav ul li a:hover,
+header nav ul li a:focus {
+    transform: scale(1.2);
+    color: var(--headerColor1Hover);
+    outline: transparent;
+}
+
+header nav ul li a::before {
+    content: '';
+    border-bottom: 3px solid var(--headerColor1Hover);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform ease 400ms;
+    -moz-transition: transform ease 400ms;
+    -webkit-transition: transform ease 400ms;
+    -o-transition: transform ease 400ms;
+}
+
+header nav ul li a:hover::before,
+header nav ul li a:focus::before {
+    content: '';
+    transform: scaleX(1);
+}
+
+.hiden {
+    display: none;
+}
+
+@media screen and (min-width: 800px) {
+
+    .ham {
+        display: none;
+    }
+
+    header nav ul li {
+        border-bottom: none;
+    }
+
+    header nav ul li a {
+        margin: 1em 0.7em 1em 0;
+    }
+
+    header ul.hiden {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+}
+
+@keyframes showMenu {
+    0% {
+        transform: scaleY(0);
+        z-index: 3;
+    }
+
+    80% {
+        transform: scaleY(1.2);
+    }
+
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+/*   ukryty przycisk do pomijania nagłówka  */
+
+.skip {
+    text-transform: uppercase;
+    position: absolute;
+    top: 0;
+    left: 20%;
+    font-size: clamp(17px, 2.5vw, 30px);
+    color: var(--skipColor1);
+    background-color: var(--headerBackgraundColor);
+    border-left: 4px solid var(--skipColor1);
+    border-bottom: 4px solid var(--skipColor1);
+    border-right: 4px solid var(--skipColor1);
+    border-radius: 0 0 30px 30px;
+    padding: 1em;
+    transform: translateY(-300px);
+    opacity: 0;
+    transition: opacity 300ms, transform 500ms;
+    z-index: 999;
+}
+
+.skip:focus,
+.skip:hover {
+    outline: transparent;
+    transform: translateY(0);
+    opacity: 1;
+}
