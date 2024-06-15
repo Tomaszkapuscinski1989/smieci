@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+  --text-color1: gold;
+  --text-color1hover: white;
+  --backgroundColor1: rgb(4, 23, 54);
+  --hamburgerBackground: white;
+  --menuLineColor: gold;
+  --max-width1: 1400px;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+
+header {
+  width: 100%;
+  background-color: var(--backgroundColor1);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-weight: bold;
+  z-index: 998;
+}
+
+header > nav {
+  max-width: var(--max-width1);
+  background-color: var(--backgroundColor1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: clamp(2.2rem, 3vw, 4rem) clamp(1.6rem, 2.3vw, 3rem);
+  position: relative;
+  transition: padding 500ms;
+}
+header.scroll > nav {
+  padding: clamp(0.7rem, 1vw, 1.3rem) clamp(0.5rem, 0.7vw, 1rem);
+}
+
+header > nav > h1 > a {
+  color: var(--text-color1);
+  font-size: clamp(1.6rem, 2.3vw, 3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: transform 500ms, font-size 500ms;
+}
+header.scroll > nav > h1 > a {
+  font-size: clamp(1.4rem, 1.9vw, 2.5rem);
+}
+
+header nav h1 :is(a:hover, a:focus) {
+  transform: scale(1.2);
+  color: var(--text-color1hover);
+  outline: transparent;
+}
+
+.ham {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--hamburgerBackground);
+  border-radius: 5px;
+  position: absolute;
+  top: 25%;
+  left: 90%;
+  cursor: pointer;
+  transition: top 500ms;
+}
+
+header.scroll .ham {
+  top: 10%;
+}
+
+.ham::before,
+.ham::after {
+  content: '';
+  width: 10px;
+  height: 2px;
+  background-color: var(--hamburgerBackground);
+  position: absolute;
+}
+.ham::before {
+  top: 20%;
+  left: 20%;
+}
+.ham::after {
+  top: 60%;
+  left: 20%;
+}
+
+header > nav > ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: clamp(4.4rem, 6vw, 8rem);
+  left: 0;
+  right: 0;
+  transform-origin: top center;
+  background-color: var(--backgroundColor1);
+  transition: top 500ms;
+  animation: showMenu 500ms ease forwards;
+}
+
+header.scroll > nav > ul {
+  top: 2.5rem;
+}
+
+header nav ul li {
+  width: 100%;
+  text-align: center;
+  border-bottom: 2px var(--menuLineColor) solid;
+}
+
+header nav ul li a {
+  color: var(--text-color1);
+  text-transform: capitalize;
+  font-size: clamp(1.4rem, 1.9vw, 2.5rem);
+  margin: 1em 0;
+  padding: 0.5em 0;
+  text-align: center;
+  transition: transform 500ms, color 500ms, font-size 500ms;
+}
+
+header.scroll nav ul li a {
+  font-size: clamp(1.2rem, 1.6vw, 2rem);
+}
+
+header nav ul li :is(a:hover, a:focus) {
+  transform: scale(1.2);
+  color: var(--text-color1hover);
+  outline: transparent;
+}
+
+header nav ul li a::before {
+  content: '';
+  border-bottom: 3px solid var(--text-color1hover);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform ease 400ms;
+}
+
+header nav ul li a:hover::before,
+header nav ul li a:focus::before {
+  content: '';
+  transform: scaleX(1);
+}
+
+.hiden {
+  display: none;
+}
+main {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+main section {
+  display: flex;
+}
+main section.s2 {
+  display: flex;
+  flex-direction: row-reverse;
+}
+main section p {
+  font-size: clamp(1.6rem, 2.3vw, 3rem);
+  color: white;
+}
+.error {
+  color: red;
+  font-size: clamp(1.6rem, 2.3vw, 3rem);
+  text-align: center;
+}
+main form {
+  margin: clamp(3.2rem, 4.6vw, 6rem) auto;
+  width: 50%;
+}
+main form h2 {
+  color: var(--text-color1);
+  font-size: clamp(1.6rem, 2.3vw, 3rem);
+  margin: clamp(1.6rem, 2.3vw, 3rem) 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.input-field {
+  font-size: clamp(0.8rem, 1.2vw, 1.5rem);
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  height: 50px;
+  width: 100%;
+  padding: 0 10px 0 45px;
+  margin: clamp(0.8rem, 1.2vw, 1.5rem) 0;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  transition: 0.2s ease;
+}
+.input-field:hover,
+.input-field:focus {
+  background: rgba(255, 255, 255, 0.25);
+}
+::-webkit-input-placeholder {
+  color: #fff;
+}
+.input-box i {
+  position: relative;
+  top: -35px;
+  left: 17px;
+  color: #fff;
+}
+.submit {
+  font-size: 15px;
+  font-weight: 500;
+  color: black;
+  height: 45px;
+  width: 100%;
+  border: none;
+  border-radius: 30px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.7);
+  margin: clamp(0.8rem, 1.2vw, 1.5rem) 0;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+submit:hover {
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 1px 5px 7px 1px rgba(0, 0, 0, 0.2);
+}
+#login-check {
+  font-size: clamp(0.8rem, 1.2vw, 1.5rem);
+}
+label {
+  font-size: clamp(0.8rem, 1.2vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.5);
+}
+footer {
+  width: 100%;
+  background-color: var(--backgroundColor1);
+
+  margin: clamp(0.8rem, 1.2vw, 1.5rem) 0 0;
+}
+
+footer div {
+  margin: clamp(0.8rem, 1.2vw, 1.5rem) auto 0;
+  max-width: var(--max-width1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+footer li {
+  font-size: clamp(1.6rem, 2.4vw, 3rem);
+  color: rgba(255, 255, 255, 0.5);
+  margin: clamp(0.8rem, 1.2vw, 1.5rem) 0;
+}
+@media screen and (min-width: 800px) {
+  .ham {
+    display: none;
+  }
+
+  header nav ul li {
+    border-bottom: none;
+  }
+
+  header nav ul li a {
+    margin: 1em 0.7em 1em 0;
+  }
+
+  header ul.hiden {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  header.scroll > nav > ul {
+    top: 0;
+  }
+  footer div {
+    flex-direction: row;
+  }
+}
+
+@keyframes showMenu {
+  0% {
+    transform: scaleY(0);
+    z-index: 3;
+  }
+
+  80% {
+    transform: scaleY(1.2);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  --clr-1: #052b2f;
+  --clr-2: #073438;
+  --clr-3: #0e4b50;
+  --clr-4: #2d8f85;
+  --clr-5: #637c54;
+}
+
+.card {
+  background: var(--clr-1);
+  border-radius: 0.5rem;
+  position: relative;
+  padding: clamp(1.6rem, 2.4vw, 3rem);
+}
+
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  inset: -0.5rem;
+  z-index: -1;
+
+  background: conic-gradient(
+    from var(--gradient-angle, 0deg),
+    var(--clr-3),
+    var(--clr-4),
+    var(--clr-5),
+    var(--clr-4),
+    var(--clr-3)
+  );
+
+  border-radius: inherit;
+  animation: rotation 20s linear infinite;
+}
+
+.card::after {
+  filter: blur(3.5rem);
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 0deg;
+  }
+
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+#loginBtn {
+  text-align: center;
+  border: 5px solid gold;
+  border-radius: 20px;
+  color: black;
+  padding: 2rem 1rem;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: color 1000ms, border-color 1000ms;
+}
+
+#loginBtn:focus,
+#loginBtn:hover {
+  border-color: black;
+  outline: transparent;
+  transition: color 1000ms, border-color 1000ms;
+}
+
+#loginBtn::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  background: gold;
+  width: 10%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  inset: 0;
+  margin: auto;
+  opacity: 0;
+  transform: scale(1);
+  transition: transform 1000ms, opacity 1000ms;
+}
+
+#loginBtn:focus::before,
+#loginBtn:hover::before {
+  transform: scale(20);
+  opacity: 1;
+  transition: transform 1000ms, opacity 500ms;
+}

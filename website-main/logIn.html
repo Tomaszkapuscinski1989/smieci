@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="stylesheet" href="style.css" />
+    <title>BeFriends</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav>
+        <h1><a href="#">BeFriends.</a></h1>
+        <div class="ham menu"></div>
+        <ul class="hiden" id="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li>
+            <a href="logIn.html" class="signIn" id="loginBtn"> Sign in </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="log">
+      <form id="form" class="card">
+        <h2>Logowanie do serwisu</h2>
+        <input
+          type="text"
+          class="input-field"
+          id="logowanie"
+          placeholder="Username or Email"
+        />
+        <input
+          type="password"
+          class="input-field"
+          id="pas"
+          placeholder="Password"
+        />
+        <input type="submit" class="submit" value="Sign in" id="signIn" />
+        <input type="checkbox" id="login-check" />
+        <label for="login-check"> Remember Me</label>
+      </form>
+    </main>
+    <footer>
+      <div>
+        <ul>
+          <li>Lorem ipsum dolor</li>
+          <li>Lorem ipsum dolor</li>
+          <li>Lorem ipsum dolor</li>
+          <li>Lorem ipsum dolor</li>
+          <li>Lorem ipsum dolor</li>
+        </ul>
+
+        <ul>
+          <li>Lorem ipsum dolor</li>
+          <li>Lorem ipsum dolor</li>
+          <li>Lorem ipsum dolor</li>
+          <li>Lorem ipsum dolor</li>
+          <li>Lorem ipsum dolor</li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+      const log = document.getElementById('logowanie');
+      const pas = document.getElementById('pas');
+      const form = document.getElementById('form');
+      const czek = document.getElementById('login-check');
+      const cat = localStorage.getItem('login');
+      const cat2 = localStorage.getItem('haslo');
+
+      log.value = cat;
+      pas.value = cat2;
+
+      users = [
+        { log: 'log', pas: 'pas' },
+        { log: 'l', pas: 'has' },
+      ];
+      form.addEventListener('submit', (event) => {
+        for (const i of users) {
+          console.log(log);
+          console.log(log.value);
+          console.log(pas.value);
+          if (log.value == i.log && pas.value == i.pas) {
+            if (czek.checked === true) {
+              localStorage.setItem('login', i.log);
+              localStorage.setItem('haslo', i.pas);
+            } else {
+              localStorage.clear();
+            }
+            localStorage.setItem('log', true);
+            location.replace('./blog.html');
+          }
+        }
+        log.value = '';
+        pas.value = '';
+
+        const mainTag = document.getElementById('log');
+        if (mainTag.childElementCount === 1) {
+          let msg = document.createElement('h3');
+          console.log(mainTag);
+          mainTag.prepend(msg);
+
+          msg.innerText = 'Błedne dane logowania';
+          msg.classList.add('error');
+        }
+
+        event.preventDefault();
+      });
+    </script>
+  </body>
+</html>
